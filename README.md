@@ -1,4 +1,15 @@
+# Content
+1. [GoViolin Features](#govioling)
+2. [Run the app using Docker](#docker)
+3. [Deploy the app to EKS Cluster](#eks)
+4. [Create The Pipeline](#pipeline)
+5. [Configure Email Notification in Jenkins](#email_notification)
+6. [Run the Pipeline](#run)
+7. [Emails](#email)
+
+<a name="govioling"></a>
 # GoViolin
+
 
 GoViolin is a web app written in Go that helps with violin practice.
 
@@ -12,7 +23,7 @@ Contains:
 * Arpeggios
 * A set of two part scale duet melodies by Franz Wohlfahrt
 
-
+<a name="docker"></a>
 # Run the app using Docker
 
 To run the application using docker execute the following commands: 
@@ -26,7 +37,7 @@ docker run -d -p 8080:8080 go-app:1.0
 
 ![Running the app using docker](/images/docker_1.png)
 
-
+<a name="eks"></a>
 # Deploy the app to EKS Cluster
 
 First, you need to have an aws account and have [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) and [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)  installed on your machine. 
@@ -89,6 +100,7 @@ kubectl apply -f kubernetes/nginx-ingress.yaml
 ![Get The App Url](/images/ingress_1.png)
 ![Running the App on eks](/images/ingress_2.png)
 
+<a name="pipeline"></a>
 # Create The Pipeline 
 
 1- Create a new item in jenkins
@@ -150,7 +162,7 @@ args:
 - "<cluster_name>"
 ```
 
-
+<a name="email_notification"></a>
 # Configure Email Notification in Jenkins
 
 From jenkins dashboard go to manage jenkins then configure system and then Enter the SMTP server name under Email Notification.
@@ -159,6 +171,16 @@ Click the Advanced button and then click the checkbox next to the Use SMTP Authe
 
 ![](/images/jenkins_4.png)
 
+<a name="run"></a>
 # Run the Pipeline 
+![](/images/pipeline.png)
+![](/images/eks_2.png)
+![](/images/eks_1.png)
+
+<a name="email"></a>
+# Emails
+![](/images/email_3.png)![](/images/email_2.png)![](/images/email_1.png)
+
+
 
 
