@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: go-app-deployment
+    labels:
+        app: go-app
+
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: go-app 
+
+    template:
+        metadata:
+            labels:
+                app: go-app 
+        spec:
+            imagePullSecrets:
+                - name: dockerhub-creds
+            containers:
+                - name: go-app-container 
+                  image: $IMAGE_NAME
+                  imagePullPolicy: Always
+                  ports: 
+                    - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: go-app-service
+
+spec:
+    type: LoadBalancer
+    selector:
+        app: go-app
+    ports:
+        - port: 80
+          targetPort: 8080
+
