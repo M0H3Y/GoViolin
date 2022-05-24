@@ -1,13 +1,18 @@
 pipeline {
   agent any
-  
+
+  environment {
+      
+    IMAGE_NAME = "mohey/go-app:1.0.0-$BUILD_NUMBER"
+
+  }
+
   stages {
       
     stage('Build The Docker Image') {
         
       steps {
         script {  
-          env.IMAGE_NAME = "mohey/go-app:1.0.0-$BUILD_NUMBER"
           echo "Building The Docker Image...."
           sh "docker build -t $IMAGE_NAME ."
         }
