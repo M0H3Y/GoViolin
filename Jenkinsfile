@@ -45,6 +45,24 @@ pipeline {
       
     }
 
+    stage("Deploy To EKS Cluster") {
+
+      environment {
+        AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
+        
+      }
+
+      steps {
+        script {
+          echo 'Deploying app To EKS Cluster...'
+          sh 'envsubst < kubernetes/deployment.yaml | kubectl apply -f - '
+        }
+      }
+
+    }
+
+
 
   }
 }
